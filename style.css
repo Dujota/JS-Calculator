@@ -35,6 +35,14 @@ button {
     font-family: 'Roboto', sans-serif;
 }
 
+button:active {
+    background-color: lightblue;
+}
+
+button:hover {
+    background-color: lightblue;
+}
+
 .blue {
     background-color: lightblue;
 }
