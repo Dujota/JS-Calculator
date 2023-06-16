@@ -14,14 +14,28 @@ let timeToClear = false;
 let opIs = "";
 let n1=0;
 
+// Fill in the calc field with the number in local storage 
+window.addEventListener('load', (e) => {
+    exp.innerText = localStorage.getItem('display_num');
+    opIs = localStorage.getItem('active_operation');
+    n1 = localStorage.getItem('n1');
+    timeToClear = localStorage.getItem('time_to_clear');
+    if (opIs) {
+        document.getElementById(opIs).classList.add('blue');
+    }
+})
+
 // Functions 
 // number button click 
 function numClick(num) {
     if (timeToClear) {
         exp.innerText = "";
         timeToClear = false;
+        localStorage.clear('display_num');
+        localStorage.setItem('time_to_clear',false);
     }
     exp.append(num);
+    localStorage.setItem('display_num',exp.innerText);
 }
 
 // operation click
@@ -31,13 +45,29 @@ function opClick(expText,opText) {
     }
     if (!opIs) {
         n1 = exp.innerText;
+        localStorage.setItem('n1',n1);
     } else {
         n1 = runOp(Number(n1),Number(expText),opIs);
         exp.innerText = n1;
+        localStorage.setItem('display_num',exp.innerText);
+        localStorage.setItem('n1',n1);
     }
     opIs = opText;
-    // target.classList.add("blue");
-    timeToClear = true;
+    localStorage.setItem('active_operation',opIs);
+    localStorage.setItem('time_to_clear',true);
+    return timeToClear = true;
+}
+
+// function for clicking equals/return
+function equalsClick(expText) {
+    if (opIs && expText) {
+        n1 = runOp(Number(n1),Number(expText),opIs);
+        exp.innerText = n1;
+        opIs="";
+        timeToClear = true;
+        localStorage.setItem('active_operation',opIs);
+        localStorage.setItem('time_to_clear',true);
+    }
 }
 
 // function to run operations
@@ -58,15 +88,7 @@ function runOp(n1,n2,op) {
     }                
 }
 
-// function for clicking equals/return
-function equalsClick(expText) {
-    if (opIs && expText) {
-        n1 = runOp(Number(n1),Number(expText),opIs);
-        exp.innerText = n1;
-        opIs="";
-        timeToClear = true;
-    }
-}
+//------
 
 
 // Grab numbers and operations in bulk and then split out how they're handled by class
@@ -80,6 +102,9 @@ frame.addEventListener('click', function(event) {
         let expText = exp.innerText;
         const opText = target.innerText;
         opClick(expText,opText);
+        if (timeToClear) {
+            target.classList.add("blue");
+        }
     } 
 })
 
@@ -92,10 +117,14 @@ document.addEventListener('keydown',function(event) {
     } else if (target=='+' || target=='-' || target=='/' || target=='*') {
         let expText = exp.innerText;
         opClick(expText,target);
-    } else if (target=='return') {
+        if (timeToClear) {
+            const targetButton = document.getElementById(target);
+            targetButton.classList.add("blue");
+        }
+    } else if (target=='Enter') {
         let expText = exp.innerText;
         equalsClick(expText);
-    }
+    } 
 })
 
 // Clear button clears on click, or operation if number field is already clear
@@ -106,10 +135,13 @@ clear.addEventListener('click',function() {
         minus.classList.remove("blue");
         multiply.classList.remove("blue");
         divide.classList.remove("blue");
+        localStorage.clear();
     } else {
         exp.innerText = "";
+        localStorage.clear('display_num');
     }
     timeToClear = false;
+    localStorage.setItem('time_to_clear',false);
 })
 
 // Reset all to default if Reset is clicked
@@ -121,6 +153,7 @@ reset.addEventListener('click', function() {
     multiply.classList.remove("blue");
     divide.classList.remove("blue");
     timeToClear = false;
+    localStorage.clear();
 })
 
 // Equals button click handled separately because it only runs if everything 
