@@ -31,7 +31,7 @@ function numClick(num) {
     if (timeToClear) {
         exp.innerText = "";
         timeToClear = false;
-        localStorage.clear('display_num');
+        localStorage.removeItem('display_num');
         localStorage.setItem('time_to_clear',false);
     }
     exp.append(num);
@@ -138,7 +138,7 @@ clear.addEventListener('click',function() {
         localStorage.clear();
     } else {
         exp.innerText = "";
-        localStorage.clear('display_num');
+        localStorage.removeItem('display_num');
     }
     timeToClear = false;
     localStorage.setItem('time_to_clear',false);
