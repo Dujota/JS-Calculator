@@ -10,10 +10,6 @@ const calcButton = document.querySelectorAll(`button`)
 const calcDisplay = document.querySelector(`#calc-display`)
 let calcArray = []
 
-/* 
-Need to figure out how to get more values to show on cal at once. 1. Save display number seperately or evalute buttonArray
-*/
-
 const resetCalc = () => {
   calcArray = [`0`]
   calcDisplay.innerHTML = `${calcArray}`
