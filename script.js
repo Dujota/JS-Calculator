@@ -8,17 +8,33 @@
 
 const calcButton = document.querySelectorAll(`button`)
 const calcDisplay = document.querySelector(`#calc-display`)
-let calcArray = []
+
+let calcArray = [];
 
 const resetCalc = () => {
   calcArray = [`0`]
   calcDisplay.innerHTML = `${calcArray}`
   calcArray = []
+  updateCalcArrayLocalStorage();
+}
+
+const updateCalcDisplay = () => {
+  let displayNumber = calcArray.join(``)
+  calcDisplay.innerHTML = `${displayNumber}`
+}
+
+const initCalc = () => {
+  calcArray = getCalcArrayLocalStorage();
+  if (calcArray.length === 0){
+    resetCalc();
+  } else {
+    updateCalcDisplay();
+  }
 }
 
 const getValueFromEvent = event => {
   let eventType = event.constructor.name
-
+  
   if (eventType === `PointerEvent`) {
     return event.target.id
   } else if (eventType === `KeyboardEvent`) {
@@ -49,35 +65,38 @@ const isValidValue = calcSelection => {
   }
 }
 
+const getCalcArrayLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("calcArray"));
+}
+
+const updateCalcArrayLocalStorage = () => {
+  localStorage.setItem("calcArray", JSON.stringify(calcArray));
+}
+
 const doMath = event => {
-  console.log('event', event)
   let calcSelection = getValueFromEvent(event)
   if ((calcSelection === `reset`) | (calcSelection === `Backspace`)) {
     resetCalc()
   } else if ((calcSelection === `=`) | (calcSelection === `Enter`)) {
     let numberMath = eval(calcArray.join(``) || '0')
     let stringToNum = parseFloat(numberMath)
-    let finalNum = null
     if (Math.round(stringToNum) !== stringToNum) {
-      finalNum = Number(stringToNum.toFixed(5))
-      console.log(finalNum)
+      calcArray = [Number(stringToNum.toFixed(5))]
     } else {
-      finalNum = stringToNum
-      console.log(finalNum)
+      calcArray = [stringToNum]
     }
-    calcDisplay.innerHTML = `${finalNum}`
-    console.log(`finalNum:${finalNum}`)
+    updateCalcArrayLocalStorage();
+    updateCalcDisplay();
   } else {
     if (isValidValue(calcSelection)) {
       calcArray.push(calcSelection)
-      let displayNumber = calcArray.join(``)
-      calcDisplay.innerHTML = `${displayNumber}`
-      console.log(calcArray)
+      updateCalcArrayLocalStorage();
+      updateCalcDisplay();
     }
   }
 }
 
-resetCalc()
+initCalc();
 // Event Listeners
 calcButton.forEach(button => button.addEventListener(`click`, doMath))
 
