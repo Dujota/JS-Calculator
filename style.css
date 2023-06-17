@@ -35,6 +35,10 @@ button {
     font-family: 'Roboto', sans-serif;
 }
 
+button:active {
+    background-color: blueviolet;
+}
+
 .number-button, .operation-button, .equals-button {
     width: 20%;
     height: 90%;
