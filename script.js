@@ -3,37 +3,59 @@ const numberButtons = document.querySelectorAll(".number-button");
 const operationsButtons = document.querySelectorAll(".operation-button");
 const calcDisplay = document.getElementById("calc-display");
 const resetButton = document.querySelector(".reset-button");
-let array =[];
+const addBtn = document.getElementById("+");
+const subBtn = document.getElementById("-");
+const multBtn = document.getElementById("*");
+const divBtn = document.getElementById("/");
+let array=[];
 
-
-
-
-const numAndOpsSaved = ()=>{
+/** the function below listens for when numbers are clicked, then it saves the value of the numbers clicked and appends the text in HTML*/
+const numsSaved = ()=>{
     for (let i=0; i<numberButtons.length; i++){
         numberButtons[i].addEventListener('click',event=>{
             let numsValue=numberButtons[i].value;
-            calcDisplay.innerText=numsValue;
-            array.push(numsValue);
+            calcDisplay.append(numsValue);
+            array.push(Number(numsValue));
         })
     }
+}
 
+/** the function below listens for when numbers are clicked, then it saves the value of the operations clicked and appends the text in HTML*/
+const opsSaved =()=>{
     for (let i=0; i<operationsButtons.length; i++){
         operationsButtons[i].addEventListener('click',event=>{
             let opsValue=operationsButtons[i].value;
-            calcDisplay.innerText=opsValue;
-            array.push(opsValue);
+            calcDisplay.append(opsValue);
+            //array.push(opsValue);
         })
     }
 }
+
+const numAndOpsSaved = ()=>{
+    numsSaved()
+    opsSaved()
+}
 numAndOpsSaved()
 
-const reset =()=>{
-    resetButton.addEventListener('click', event=>{
-        let array =[];
-        console.log(array);
-    })
-}
-reset()
+// const mathOperators = ()=>{
+//     if (addBtn.addEventListener('click', event=>{
+
+//     })){
+//     }else if (subBtn.addEventListener('click', event=>{
+
+//     })){
+
+//     }else if(multBtn.){
+
+//     }else if(divBtn.)
+// }
+
+
+
+
+
+
+
 
 //got to create a function that reduces an array with operations that also makes sure the vales are not strings but numbers and operators
 //then put the display array on the calcDisplay
