@@ -1,6 +1,7 @@
 //Selector Variables
 const numberButtons = document.querySelectorAll(".number-button");
 const operationsButtons = document.querySelectorAll(".operation-button");
+const decimalButton = document.querySelector(".decimal-button");
 const calcDisplay = document.getElementById("calc-display");
 const resetButton = document.querySelector(".reset-button");
 const addBtn = document.getElementById("+");
@@ -20,8 +21,14 @@ const numsSaved = ()=>{
         })
     }
 }
-
-/** the function below listens for when numbers are clicked, then it saves the value of the operations clicked and appends the text in HTML*/
+const decimalSaved = ()=>{
+        decimalButton.addEventListener('click',event=>{
+            let decimalValue=decimalButton.value;
+            calcDisplay.append(decimalValue);
+            array.push(decimalValue);
+        })
+}
+/** the function below listens for when operators are clicked, then it saves the value of the operations clicked and appends the text in HTML*/
 const opsSaved =()=>{
     for (let i=0; i<operationsButtons.length; i++){
         operationsButtons[i].addEventListener('click',event=>{
@@ -48,20 +55,9 @@ const reset = ()=>{
 }
 const numAndOpsSaved = ()=>{
     numsSaved()
+    decimalSaved()
     opsSaved()
     mathOperations()
     reset()
 }
 numAndOpsSaved()
-
-
-
-
-
-
-
-
-//got to create a function that reduces an array with operations that also makes sure the vales are not strings but numbers and operators
-//then put the display array on the calcDisplay
-//for the reset button, empty out out the array and disply the emptyness
-//have a function that triggers the operator display only when the = button is clicked
