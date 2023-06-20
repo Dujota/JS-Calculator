@@ -1,3 +1,18 @@
+/* 
+Function to add: square root of a number (√)
+Function to add: factorial (!)
+comments will talk about how I would add it
+
+
+
+* add a button for each function in html
+* add a new query selector for each button
+* I'd need to fix the runOperations function because it's currently
+dependent on 2 numbers and one operator
+* I'd have to rewrite the function logic to break into another function if it's an operator that only needs 1 input vs 2
+
+*/
+
 const display = document.querySelector('#calc-display');
 const numberBtns = document.querySelectorAll('.number-button');
 const resetBtn = document.querySelector('#reset');
@@ -60,14 +75,14 @@ const runOperations = (Event) => {
 const resetCalc = (Event) => {
     clearDisplay(Event);
     valuesToOperate = [];
-}
+};
 
 const clearCalc = (Event) => {
     if (display.innerText == '') {
         return;
     }
     display.innerText = '0';
-}
+};
 
 const clearDisplay = (Event) => {
     display.innerText = '';
