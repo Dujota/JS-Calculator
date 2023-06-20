@@ -7,6 +7,7 @@ const addBtn = document.getElementById("+");
 const subBtn = document.getElementById("-");
 const multBtn = document.getElementById("*");
 const divBtn = document.getElementById("/");
+const equalBtn = document.getElementById("=");
 let array=[];
 
 /** the function below listens for when numbers are clicked, then it saves the value of the numbers clicked and appends the text in HTML*/
@@ -26,29 +27,32 @@ const opsSaved =()=>{
         operationsButtons[i].addEventListener('click',event=>{
             let opsValue=operationsButtons[i].value;
             calcDisplay.append(opsValue);
-            //array.push(opsValue);
+            array.push(opsValue);
         })
     }
 }
-
+/**Join the array elements and evaluate the contents - this creates the math part*/
+const mathOperations =()=>{
+    equalBtn.addEventListener('click', event=>{
+        let joinedArray = array.join('');
+        let operations = eval(joinedArray);
+        calcDisplay.innerText = operations;
+    })
+}
+/**Reset function below */
+const reset = ()=>{
+    resetButton.addEventListener('click', event=>{
+        array.length = 0;
+        calcDisplay.innerText=array;
+    })
+}
 const numAndOpsSaved = ()=>{
     numsSaved()
     opsSaved()
+    mathOperations()
+    reset()
 }
 numAndOpsSaved()
-
-// const mathOperators = ()=>{
-//     if (addBtn.addEventListener('click', event=>{
-
-//     })){
-//     }else if (subBtn.addEventListener('click', event=>{
-
-//     })){
-
-//     }else if(multBtn.){
-
-//     }else if(divBtn.)
-// }
 
 
 
