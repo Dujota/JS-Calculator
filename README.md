@@ -42,7 +42,7 @@ Create a directory in your student lab folder called `calculator` and clone this
 2. When the user clicks a button, how are you going to get which number or operation they clicked? When they click a certain button, what code are you going to have to run?
 
 3. Try not to use a separate event handler for each button (This is referred to as event delegation). With `event.currentTarget` you could use just one event handler for the numbers by grabbing the text from the clicked element.
-
+ 
 ## More
 
 1. Add a `clear` button that will clear your screen and start over at zero.
