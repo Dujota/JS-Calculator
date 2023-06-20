@@ -39,9 +39,7 @@ const operatorSelected = (Event) => {
     if (display.innerText == '') {
         return;
     }
-    else if (valuesToOperate.length == 0) {
-        valuesToOperate.push(display.innerText);
-    }
+    valuesToOperate.push(display.innerText);
     valuesToOperate.push(Event.currentTarget.id);
     clearDisplay(Event);
 };
@@ -78,9 +76,6 @@ const resetCalc = (Event) => {
 };
 
 const clearCalc = (Event) => {
-    if (display.innerText == '') {
-        return;
-    }
     display.innerText = '0';
 };
 
