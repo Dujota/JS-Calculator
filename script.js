@@ -15,7 +15,6 @@ const numberSelected = (Event) => {
 };
 
 const operatorSelected = (Event) => {
-    console.log(valuesToOperate);
     if (display.innerText == '') {
         return;
     }
@@ -46,10 +45,10 @@ const runOperations = (Event) => {
         }
     }
     display.innerText = parseFloat(answer).toFixed(2);
+    
     if (display.innerText.slice(-2) == "00") {
         display.innerText = display.innerText.slice(0, -3);
     }
-    valuesToOperate.push(display.innerText);
 };
 
 const resetCalc = (Event) => {
