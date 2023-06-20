@@ -3,6 +3,7 @@ const numberBtns = document.querySelectorAll('.number-button');
 const resetBtn = document.querySelector('#reset');
 const operatorBtns = document.querySelectorAll('.operation-button');
 const equalsBtn = document.querySelectorAll('.equals-button');
+const clearBtn = document.querySelectorAll('.clear-button');
 const maxDisplayLength = 12;
 
 var valuesToOperate = [];
@@ -11,7 +12,12 @@ const numberSelected = (Event) => {
     if (display.innerText.length == maxDisplayLength) {
         return;
     }
-    display.innerText += Event.currentTarget.id;
+    else if (display.innerText == '0') {
+        display.innerText = Event.currentTarget.id;
+    }
+    else {
+        display.innerText += Event.currentTarget.id;
+    }
 };
 
 const operatorSelected = (Event) => {
@@ -45,7 +51,7 @@ const runOperations = (Event) => {
         }
     }
     display.innerText = parseFloat(answer).toFixed(2);
-    
+
     if (display.innerText.slice(-2) == "00") {
         display.innerText = display.innerText.slice(0, -3);
     }
@@ -55,6 +61,14 @@ const resetCalc = (Event) => {
     clearDisplay(Event);
     valuesToOperate = [];
 }
+
+const clearCalc = (Event) => {
+    if (display.innerText == '') {
+        return;
+    }
+    display.innerText = '0';
+}
+
 const clearDisplay = (Event) => {
     display.innerText = '';
 };
@@ -69,4 +83,7 @@ for (let i = 0; i < operatorBtns.length; i++) {
 };
 for (let i = 0; i < equalsBtn.length; i++) {
     equalsBtn[i].addEventListener('click', runOperations);
+};
+for (let i = 0; i < clearBtn.length; i++) {
+    clearBtn[i].addEventListener('click', clearCalc);
 };
