@@ -42,7 +42,7 @@ button {
     font-size: x-large;
 }
 
-.reset-button {
+.reset-button, .clear-button{
     width: 30%;
     height: 50%;
     margin: 0.2em;
