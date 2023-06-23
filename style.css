@@ -17,7 +17,7 @@ body {
     height: 35em;
 }
 
-#calc-display{
+#calcDisplay{
     display: block;
     font-family: 'Roboto', sans-serif;
     font-size:60px;
