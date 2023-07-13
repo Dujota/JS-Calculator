@@ -22,13 +22,14 @@ const buttonClicked = (event) => {
     if (input === "0") {
         input = ""
     }
-    input += event.target.innerText
     if (event.target.innerText === "=") {
         console.log(input);
         console.log(result, eval(input));
         result = eval(input);
-        console.log(result)
-    }
+        console.log(result);
+      } else {
+        input += event.target.innerText;
+      }
     render();
 }
 
@@ -74,7 +75,7 @@ const numberClicked = (event) => {
 
 //Event Listeners
 frame.addEventListener("click", buttonClicked);
-numberButton.addEventListener("click", press8);
+//numberButton.addEventListener("click", press8);
 //numberButton.addEventListener("click", numberClicked);
 // equalsButton.addEventListener("click", equalsClicked);
 // resetButton.addEventListener("click", resetClicked);
