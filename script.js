@@ -1,14 +1,3 @@
-//Note: I was not able to get the buttons to work and I checked many times
-//if it had something to do with values I gave to locate them.
-//After looking at many of our previous projects and mdn for methods, I
-//was not able to get my event listeners and handlers display and I looked for
-//other solutions online and tried the eval to calculate it.
-//The issue I am facing is not being able to get the buttons to work which
-//prevented me moving forward and I used my time to troubleshoot online and
-//should have gotten help earlier. I dashed out most of my code that I tried and
-//the current one also is not working unfortunately and I didn't even take a
-//break and would like to see how its done hopefully
-
 // A user should be able to select numbers so that they can do things with them.
 // A user should be able to add numbers together.
 // A user should be able to subtract numbers.
