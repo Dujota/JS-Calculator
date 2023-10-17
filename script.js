@@ -69,3 +69,11 @@ function calcTotal(e) {
         h2El.innerText = total
     }
 }
+
+resetBtnEl.addEventListener('click', resetAll)
+
+function resetAll(e) {
+    h2El.classList = ''
+    total = ''
+    h2El.innerText = total
+}
