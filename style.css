@@ -1,8 +1,9 @@
 body {
-    background-color: 
-    #cccccc;
+    background-color:
+        #cccccc;
 }
-.row {    
+
+.row {
     height: 5em;
 }
 
@@ -10,17 +11,17 @@ body {
     vertical-align: middle;
     border: 1px solid black;
     border-radius: 20px;
-    background-color:#171616;
+    background-color: #171616;
     margin: auto;
     text-align: center;
     width: 30em;
     height: 35em;
 }
 
-#calc-display{
+#calc-display {
     display: block;
     font-family: 'Roboto', sans-serif;
-    font-size:60px;
+    font-size: 60px;
     color: white;
     width: 100%;
     height: 100%;
@@ -30,12 +31,14 @@ button {
     vertical-align: middle;
     border: 1px solid white;
     border-radius: 20px;
-    background-color:#a62121;
+    background-color: #a62121;
     color: white;
     font-family: 'Roboto', sans-serif;
 }
 
-.number-button, .operation-button, .equals-button {
+.number-button,
+.operation-button,
+.equals-button {
     width: 20%;
     height: 90%;
     margin: 0.2em;
